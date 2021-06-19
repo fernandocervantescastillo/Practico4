@@ -6,7 +6,7 @@ using OpenTK.Mathematics;
 
 namespace Practico4
 {
-    class Cubo
+    class Cubo:IObjeto
     {
         private float[] _vertices;
 
@@ -118,12 +118,10 @@ namespace Practico4
 
         }
 
-        public void draw(Matrix4 matriz)
+        public override void draw(Matrix4 matriz)
         {
-
             _shader.Use();
 
-            //GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             GL.BindVertexArray(_vertexArrayObject);
 
             _shader.SetMatrix4("model", Matrix4.Identity);
@@ -134,7 +132,7 @@ namespace Practico4
 
         }
 
-        public void dispose()
+        public override void dispose()
         {
             // Unbind all the resources by binding the targets to 0/null.
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
@@ -148,8 +146,6 @@ namespace Practico4
             GL.DeleteBuffer(_elementBufferObject);
 
             GL.DeleteProgram(_shader.Handle);
-
-
         }
 
     }

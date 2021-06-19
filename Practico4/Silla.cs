@@ -7,42 +7,44 @@ namespace Practico4
 {
     class Silla
     {
+        private List<Cubo> list;
 
-        Cubo pata1;
-        Cubo pata2;
-        Cubo pata3;
-        Cubo pata4;
-        Cubo plataforma;
-        Cubo horizontal;
         public Silla(float a, float b, float h1, float h2, float z, float posX, float posY, float posZ)
         {
-            pata1 = new Cubo(z, h1, z, 0 + posX, 0 + posY, 0 + posZ);
-            pata2 = new Cubo(z, h2 - z, z, b - z + posX, 0 + posY, 0 + posZ);
-            pata3 = new Cubo(z, h1, z, 0 + posX, 0 + posY, a - z + posZ);
-            pata4 = new Cubo(z, h2 - z, z, b - z + posX, 0 + posY, a - z + posZ);
+            Cubo pata1 = new Cubo(z, h1, z, 0 + posX, 0 + posY, 0 + posZ);
+            Cubo pata2 = new Cubo(z, h2 - z, z, b - z + posX, 0 + posY, 0 + posZ);
+            Cubo pata3 = new Cubo(z, h1, z, 0 + posX, 0 + posY, a - z + posZ);
+            Cubo pata4 = new Cubo(z, h2 - z, z, b - z + posX, 0 + posY, a - z + posZ);
 
-            plataforma = new Cubo(b - z, z, a, z + posX, h2 - z + posY, 0 + posZ);
-            horizontal = new Cubo(z, z, a - 2 * z, 0 + posX, h1 - z + posY, z + posZ);
+            Cubo plataforma = new Cubo(b - z, z, a, z + posX, h2 - z + posY, 0 + posZ);
+            Cubo horizontal = new Cubo(z, z, a - 2 * z, 0 + posX, h1 - z + posY, z + posZ);
+
+           
+            list = new List<Cubo>();
+
+            list.Add(pata1);
+            list.Add(pata2);
+            list.Add(pata3);
+            list.Add(pata4);
+            list.Add(plataforma);
+            list.Add(horizontal);
+
         }
 
         public void draw(Matrix4 matriz)
         {
-            pata1.draw(matriz);
-            pata2.draw(matriz);
-            pata3.draw(matriz);
-            pata4.draw(matriz);
-            plataforma.draw(matriz);
-            horizontal.draw(matriz);
+            for(int i = 0; i < list.Count; i++)
+            {
+                list[i].draw(matriz);
+            }
         }
 
         public void dispose()
         {
-            pata1.dispose();
-            pata2.dispose();
-            pata3.dispose();
-            pata4.dispose();
-            plataforma.dispose();
-            horizontal.dispose();
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].dispose();
+            }
         }
 
     }

@@ -14,7 +14,7 @@ namespace Practico4
                 Title = "LearnOpenTK - Creating a Window",
             };
 
-            using (var window = new Window(GameWindowSettings.Default, nativeWindowSettings))
+            using (var window = new Escenario(GameWindowSettings.Default, nativeWindowSettings))
             {
                 window.Run();
             }
